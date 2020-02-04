@@ -1,7 +1,10 @@
 const container = document.querySelector('.container');
+containerHeight = 384;
+containerWidth = 384;
+
 let width = 16;
-let containerWidth;
-let containerHeight;
+let squareWidth;
+let squareHeight;
 
 
 createGrid();
@@ -28,21 +31,22 @@ function createGrid() {
             divSquare.addEventListener('mouseenter', function () {
                 divSquare.style.backgroundColor = 'red';
             });
+
+            setSquareDimension();
+            divSquare.style.height = squareHeight.toString() + "px";
+            divSquare.style.width = squareWidth.toString() + "px";
         }
     
     }
 
-    setContainerDimension();
-    container.style.height = containerHeight.toString() + 'px';
-    container.style.width = containerWidth.toString() + 'px';
-
-    console.log(container.style.height);
 
 }
 
-function setContainerDimension() {
-    containerHeight = 24 * Number(width);
-    containerWidth = 24 * Number(width);
+function setSquareDimension() {
+    squareHeight = (containerHeight / Number(width)) - 4;
+    squareWidth = (containerWidth / Number(width)) - 4;
+
+
 }
 
 function resetGrid () {
@@ -56,7 +60,7 @@ function resetGrid () {
 }
 
 function clearGrid() {
-    
+
     while (container.firstChild){
         container.removeChild(container.firstChild);
     }
